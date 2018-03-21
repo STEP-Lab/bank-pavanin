@@ -1,5 +1,6 @@
 import com.thoughtworks.step.bank.Account;
 import com.thoughtworks.step.bank.InsufficientBalanceToDebit;
+import com.thoughtworks.step.bank.InvalidAccountNumber;
 import com.thoughtworks.step.bank.MinimumBalanceException;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,8 +14,8 @@ public class AccountTest {
     private Account account;
 
     @Before
-    public void setUp() throws MinimumBalanceException {
-         account = new Account("12345",5000);
+    public void setUp() throws MinimumBalanceException, InvalidAccountNumber {
+         account = new Account("1234-1234",5000);
     }
 
     @Test
@@ -24,12 +25,12 @@ public class AccountTest {
 
     @Test
     public void checkAccountNo() {
-        assertThat(account.getAccountno(),is("12345"));
+        assertThat(account.getAccountno(),is("1234-1234"));
     }
 
     @Test (expected = MinimumBalanceException.class)
-    public void checkOpeningBalance() throws MinimumBalanceException {
-        Account account = new Account("1224", 300);
+    public void checkOpeningBalance() throws MinimumBalanceException, InvalidAccountNumber {
+        Account account = new Account("1224-1233", 300);
 
     }
 
@@ -46,5 +47,10 @@ public class AccountTest {
     @Test (expected = InsufficientBalanceToDebit.class)
     public void checkInsufficientBalanceToDebit() throws InsufficientBalanceToDebit {
         account.debit(7000);
+    }
+
+    @Test (expected = InvalidAccountNumber.class)
+    public void checkInvalidAccountNumber() throws MinimumBalanceException, InvalidAccountNumber {
+        Account account = new Account("123456",5000);
     }
 }

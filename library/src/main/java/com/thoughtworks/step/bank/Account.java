@@ -4,7 +4,10 @@ public class Account {
     private final String acc_no;
     private double balance;
 
-    public Account(String acc_no, int balance) throws MinimumBalanceException{
+    public Account(String acc_no, int balance) throws MinimumBalanceException, InvalidAccountNumber {
+        if (!acc_no.matches("[0-9]{4}(-)[0-9]{4}")){
+            throw new InvalidAccountNumber();
+        }
         this.acc_no = acc_no;
         if (balance<500){
             throw new MinimumBalanceException();
