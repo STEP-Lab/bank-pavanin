@@ -1,3 +1,5 @@
+package com.throughtworks.step.bank;
+
 import com.thoughtworks.step.bank.*;
 import org.junit.Before;
 import org.junit.Test;
