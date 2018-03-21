@@ -23,15 +23,18 @@ public class Account {
         return acc_no;
     }
 
-    public double credit(double amount) {
+    public double credit(double amount) throws InvalidAmount {
+        if(amount<0){
+            throw new InvalidAmount("Amount should be more than 0");
+        }
         this.balance+=amount;
         return this.balance;
 
     }
 
-    public double debit(double amount) throws InsufficientBalanceToDebit {
+    public double debit(double amount) throws InvalidAmount {
         if(this.balance-amount<500){
-            throw new InsufficientBalanceToDebit();
+            throw new InvalidAmount("Insufficient balance to debit");
         }
         this.balance-=amount;
         return this.balance;
