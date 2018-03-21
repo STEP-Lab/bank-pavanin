@@ -1,4 +1,5 @@
 import com.thoughtworks.step.bank.Account;
+import com.thoughtworks.step.bank.InsufficientBalanceToDebit;
 import com.thoughtworks.step.bank.MinimumBalanceException;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +19,7 @@ public class AccountTest {
 
     @Test
     public void checkBalance() {
-        assertThat(account.getBalance(), is(5000));
+        assertEquals(account.getBalance(), 5000,0);
     }
 
     @Test
@@ -38,7 +39,12 @@ public class AccountTest {
     }
 
     @Test
-    public void debit() {
+    public void debit() throws InsufficientBalanceToDebit {
         assertEquals(account.debit(1000),4000,0);
+    }
+
+    @Test (expected = InsufficientBalanceToDebit.class)
+    public void checkInsufficientBalanceToDebit() throws InsufficientBalanceToDebit {
+        account.debit(7000);
     }
 }

@@ -26,7 +26,10 @@ public class Account {
 
     }
 
-    public double debit(double amount) {
+    public double debit(double amount) throws InsufficientBalanceToDebit {
+        if(this.balance-amount<500){
+            throw new InsufficientBalanceToDebit();
+        }
         this.balance-=amount;
         return this.balance;
     }
