@@ -11,7 +11,7 @@ public class AccountTest {
     private Account account;
 
     @Before
-    public void setUp(){
+    public void setUp() throws MinimumBalanceException {
          account = new Account("12345",5000);
     }
 
@@ -25,9 +25,10 @@ public class AccountTest {
         assertThat(account.getAccountno(),is("12345"));
     }
 
-    @Test
+    @Test (expected = MinimumBalanceException.class)
     public void checkOpeningBalance() throws MinimumBalanceException {
         Account account = new Account("1224", 200);
 
     }
+
 }
