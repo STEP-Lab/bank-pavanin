@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class AccountTest {
@@ -31,4 +32,13 @@ public class AccountTest {
 
     }
 
+    @Test
+    public void credit() {
+        assertEquals(account.credit(1000),6000,0);
+    }
+
+    @Test
+    public void debit() {
+        assertEquals(account.debit(1000),4000,0);
+    }
 }

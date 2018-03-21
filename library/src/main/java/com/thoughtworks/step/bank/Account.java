@@ -2,7 +2,7 @@ package com.thoughtworks.step.bank;
 
 public class Account {
     private final String acc_no;
-    private int balance;
+    private double balance;
 
     public Account(String acc_no, int balance) throws MinimumBalanceException{
         this.acc_no = acc_no;
@@ -12,11 +12,22 @@ public class Account {
         this.balance = balance;
     }
 
-    public int getBalance() {
+    public double getBalance() {
         return balance;
     }
 
     public String getAccountno() {
         return acc_no;
+    }
+
+    public double credit(double amount) {
+        this.balance+=amount;
+        return this.balance;
+
+    }
+
+    public double debit(double amount) {
+        this.balance-=amount;
+        return this.balance;
     }
 }
