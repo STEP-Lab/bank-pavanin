@@ -1,4 +1,4 @@
-package com.throughtworks.step.bank;
+package com.thoughtworks.step.bank;
 
 import com.thoughtworks.step.bank.DebitTransaction;
 import org.junit.Test;
