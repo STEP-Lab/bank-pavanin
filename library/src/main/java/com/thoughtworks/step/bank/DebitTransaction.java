@@ -2,18 +2,13 @@ package com.thoughtworks.step.bank;
 
 import java.util.Date;
 
-public class DebitTransaction {
-    private Date date;
-    private final double amount;
-    private final String to;
+public class DebitTransaction extends Transaction {
 
     protected DebitTransaction(Date date,double amount, String to) {
-        this.date = date;
-        this.amount = amount;
-        this.to = to;
+        super(date,amount,to);
     }
 
-    public Date getDate() {
-        return date;
+    public DebitTransaction(float amount, String name) {
+        this(new Date(),amount, name);
     }
 }
