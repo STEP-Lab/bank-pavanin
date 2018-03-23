@@ -14,7 +14,7 @@ public class AccountTest {
 
     @Before
     public void setUp() throws MinimumBalanceException, InvalidAccountNumber {
-         account = new Account("1234-1234",5000);
+         account = new Account(new AccountNumber("1234-1234"),5000);
     }
 
     @Test
@@ -22,14 +22,10 @@ public class AccountTest {
         assertEquals(account.getBalance(), 5000,0);
     }
 
-    @Test
-    public void getAccountNumber() {
-        assertThat(account.getAccountno(),is("1234-1234"));
-    }
 
     @Test (expected = MinimumBalanceException.class)
     public void check_opening_balance_of_the_account() throws MinimumBalanceException, InvalidAccountNumber {
-        Account account = new Account("1224-1233", 300);
+        Account account = new Account(new AccountNumber("1234-1234"), 300);
 
     }
 
@@ -39,22 +35,22 @@ public class AccountTest {
     }
 
     @Test
-    public void debit_amount_from_account() throws InvalidAmount {
+    public void debit_amount_from_account() throws MinimumBalanceException {
         assertEquals(account.debit(1000),4000,0);
     }
 
-    @Test (expected = InvalidAmount.class)
-    public void check_debit_with_amount_more_than_balance() throws InvalidAmount {
+    @Test (expected = MinimumBalanceException.class)
+    public void check_debit_with_amount_more_than_balance() throws MinimumBalanceException {
         account.debit(7000);
     }
 
     @Test (expected = InvalidAccountNumber.class)
     public void check_the_account_number_is_valid_or_not() throws MinimumBalanceException, InvalidAccountNumber {
-        Account account = new Account("123456",5000);
+        Account account = new Account(new AccountNumber("1234"),5000);
     }
     @Test (expected = InvalidAccountNumber.class)
     public void check_the_account_number_for_alphanumeric_value() throws MinimumBalanceException, InvalidAccountNumber {
-        Account account = new Account("abcd-1234",5000);
+        Account account = new Account(new AccountNumber("abcd-1234"),5000);
     }
 
     @Test (expected = InvalidAmount.class)
