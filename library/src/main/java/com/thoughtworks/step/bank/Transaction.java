@@ -3,7 +3,7 @@ package com.thoughtworks.step.bank;
 import java.util.Date;
 import java.util.Objects;
 
-public class Transaction {
+public abstract class Transaction {
     private final Date date;
     private final double amount;
     private final String to;
@@ -15,7 +15,7 @@ public class Transaction {
         this.to = to;
     }
 
-    public Date getDate() {
+    protected Date getDate() {
         return date;
     }
 

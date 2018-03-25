@@ -8,7 +8,7 @@ public class DebitTransaction extends Transaction {
         super(date,amount,to);
     }
 
-    public DebitTransaction(float amount, String name) {
-        this(new Date(),amount, name);
+    public DebitTransaction(double amount, String to) {
+        this(new Date(),amount, to);
     }
 }
