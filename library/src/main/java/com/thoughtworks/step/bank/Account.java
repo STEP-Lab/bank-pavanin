@@ -2,6 +2,8 @@ package com.thoughtworks.step.bank;
 
 public class Account {
     private double balance;
+    private AccountNumber accountNumber;
+    private double minimumBalance = 500;
 
     public Account(AccountNumber accountNumber, int balance) throws MinimumBalanceException{
         validateMinimumBalance(balance);
@@ -9,7 +11,7 @@ public class Account {
     }
 
     private void validateMinimumBalance(double amount) throws MinimumBalanceException {
-        if(amount<500){
+        if(amount<this.minimumBalance){
             throw new MinimumBalanceException();
         }
     }
@@ -24,7 +26,6 @@ public class Account {
         }
         this.balance+=amount;
         return this.balance;
-
     }
 
     public double debit(double amount) throws MinimumBalanceException {

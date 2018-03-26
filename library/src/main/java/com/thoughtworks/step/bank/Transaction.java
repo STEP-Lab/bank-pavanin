@@ -9,7 +9,6 @@ public abstract class Transaction {
     private final String to;
 
     public Transaction(Date date, double amount, String to) {
-
         this.date = date;
         this.amount = amount;
         this.to = to;
@@ -29,7 +28,10 @@ public abstract class Transaction {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(amount, to);
+    }
+
+    public double getAmount() {
+        return amount;
     }
 }
